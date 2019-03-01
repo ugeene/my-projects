@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "574524414442",
+    "firebase_url": "https://nitaride-1551237863227.firebaseio.com",
+    "project_id": "nitaride-1551237863227",
+    "storage_bucket": "nitaride-1551237863227.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574524414442:android:d1577235fedb7696",
+        "android_client_info": {
+          "package_name": "com.rideboda.nitaride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574524414442-felomptm7roggki3i6pftbhoigt4plv8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCBjVMXOuGCVvXLc7GgKCtB5c1i4rE1u8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
