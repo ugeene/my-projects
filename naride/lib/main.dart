@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 
 void main() => runApp(MyApp());
@@ -32,7 +33,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // Image capture variable
   File _image;
+  
+  // Geolocator variables
+  Geolocator geolocator = Geolocator();
+  Position userLocation;
+  LocationOptions locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+
+  //Trying the position type argument
+  List<Position> locations = [];
+  StreamSubscription<Position> streamSubscription;
+
+  bool trackLocation =false;
+
+  // google_maps_flutter variables
+  Completer<GoogleMapController> _controller = Completer();
+  Marker marker;
 
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -101,25 +118,50 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  @override
+  void initState() {
 
-  Completer<GoogleMapController> _controller = Completer();
+    super.initState();
+    _getLocation().then((position) {
+      userLocation = position;
+    });
+  }
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(-0.1084120, 34.2656850),
-    zoom: 40,
+    Future<Position> _getLocation() async {
+    var currentLocation;
+    try {
+      currentLocation = await geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
+    } catch (e) {
+      currentLocation = null;
+    }
+    return currentLocation;
+  }
+
+  static final CameraPosition _kisumuTown = CameraPosition(
+    target: LatLng(-0.0917, 34.7680),
+    zoom: 12,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  getLocations() {
+    if (trackLocation) {
+      setState(() {
+       trackLocation = false;
+      });
+      streamSubscription.cancel();
+      streamSubscription =null;
+    } else {
+      setState(() {
+       trackLocation =true; 
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      drawer: new Drawer(
+        drawer: new Drawer(
           child: new ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
@@ -196,40 +238,34 @@ class _MyHomePageState extends State<MyHomePage> {
           
         ),
         
-      // appBar: AppBar(
-      //    title: Text(widget.title),
-      // ),
-      
-      
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: GoogleMap(
-              mapType: MapType.hybrid,
-              initialCameraPosition: _kGooglePlex,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              }
+        body: Column(
+          children: <Widget>[
+            
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: _kisumuTown,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                myLocationEnabled: true,
+                compassEnabled: true,
+              ),
             ),
-          ),
-        ],
+          ],
 
-        // child: _image == null
-        //     ? Text('No image selected.')
-        //     : Image.file(_image),
-      ),
-     
+          // child: _image == null
+          //     ? Text('No image selected.')
+          //     : Image.file(_image),
+        ),
 
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){_settingModalBottomSheet(context);},
-        //_incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.folder_open),
-      ), 
-      
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){_settingModalBottomSheet(context);},
+          tooltip: 'Select Destination',
+          child: Icon(Icons.location_on),
+        ), 
 
     );
   }
