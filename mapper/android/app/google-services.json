@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "436607450218",
+    "firebase_url": "https://mapper-eb3d1.firebaseio.com",
+    "project_id": "mapper-eb3d1",
+    "storage_bucket": "mapper-eb3d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436607450218:android:b384042a607a4db0",
+        "android_client_info": {
+          "package_name": "com.example.mapper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436607450218-jlajv92jpe4jfafemuac02eip22bm6o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7yFs4BZEPhYxU3i3nbrY4IJ01mMqx_WA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

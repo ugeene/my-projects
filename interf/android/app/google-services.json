@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "450612045750",
+    "firebase_url": "https://interf-40baf.firebaseio.com",
+    "project_id": "interf-40baf",
+    "storage_bucket": "interf-40baf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450612045750:android:19df71f158f960d8",
+        "android_client_info": {
+          "package_name": "com.example.interf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450612045750-a2ok4s1bjkk4eu01rj728984j1vqqec4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFBq0KImhdE0giz4cgYzTNDqI8x2d6eJQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
